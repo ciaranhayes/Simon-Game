@@ -1,4 +1,3 @@
-
 let buttonColours = ["red", "blue", "green", "yellow"];
 let gamePattern = [];
 let userClickedPattern = [];
@@ -18,9 +17,25 @@ $(".btn").click(function () {
     userClickedPattern.push(userChosenColour);
     playSound(userChosenColour);
     animatePress(userChosenColour);
+    checkAnswer(userClickedPattern.length - 1)
 })
 
+function checkAnswer(currentLevel) {
+    if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
+        if (gamePattern.length === userClickedPattern.length) {
+            setTimeout(function () {
+                nextSequence();
+            }, 1000);
+        }
+    } else {
+
+    }
+}
+
+
 function nextSequence() {
+
+    userClickedPattern = [];
 
     level++;
     $(".btn").on("click", function() {
@@ -48,7 +63,6 @@ function animatePress(currentColour) {
         $("#" + currentColour).removeClass( "pressed" );
     }, 100);
 }
-
 
 
 
